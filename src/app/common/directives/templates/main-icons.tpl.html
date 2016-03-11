@@ -1,0 +1,23 @@
+<div class="iconset clearfix">
+    <div class="col-120" ng-repeat="item in fileManagerCtrl.fileNavigator.fileList | filter: query | orderBy: orderProp" ng-show="!fileManagerCtrl.fileNavigator.requesting && !fileManagerCtrl.fileNavigator.error">
+        <a href="" class="thumbnail text-center" ng-click="fileManagerCtrl.smartClick(item)" ng-right-click="touch(item)" title="{{item.model.name}} ({{item.model.size | humanReadableFileSize}})">
+            <div class="item-icon">
+                <i class="material-icons" ng-show="item.model.type === 'dir'">folder</i>
+                <i class="material-icons" ng-show="item.model.type === 'file'">insert_drive_file</i>
+            </div>
+            {{item.model.name | strLimit : 11 }}
+        </a>
+    </div>
+
+    <div ng-show="fileManagerCtrl.fileNavigator.requesting">
+        <div ng-include="fileManagerCtrl.config.tplPath + '/spinner.tpl.html'"></div>
+    </div>
+
+    <div class="alert alert-warning" ng-show="!fileManagerCtrl.fileNavigator.requesting && fileManagerCtrl.fileNavigator.fileList.length < 1 && !fileManagerCtrl.fileNavigator.error">
+        {{"no_files_in_folder" | translate}}...
+    </div>
+    
+    <div class="alert alert-danger" ng-show="!fileManagerCtrl.fileNavigator.requesting && fileManagerCtrl.fileNavigator.error">
+        {{ fileManagerCtrl.fileNavigator.error }}
+    </div>
+</div>

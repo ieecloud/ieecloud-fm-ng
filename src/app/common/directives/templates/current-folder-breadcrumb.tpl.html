@@ -1,0 +1,14 @@
+<ol class="breadcrumb mb0">
+    <li>
+        <a href="" ng-click="fileManagerCtrl.fileNavigator.goTo(-1)">
+            <i class="glyphicon glyphicon-folder-open mr2"></i>
+        </a>
+    </li>
+    <li ng-repeat="(key, dir) in fileManagerCtrl.fileNavigator.currentPath track by key" ng-class="{'active':$last}" class="animated fast fadeIn">
+        <a href="" ng-show="!$last" ng-click="fileManagerCtrl.fileNavigator.goTo(key)">
+            <i class="glyphicon glyphicon-folder-open mr2"></i> {{dir.currentPath}}
+        </a>
+        <span ng-show="$last"><i class="glyphicon glyphicon-folder-open mr2"></i>  {{dir.currentPath}}</span>
+    </li>
+    <li><button class="btn btn-primary btn-xs" ng-click="fileManagerCtrl.fileNavigator.upDir()">&crarr;</button></li>
+</ol>

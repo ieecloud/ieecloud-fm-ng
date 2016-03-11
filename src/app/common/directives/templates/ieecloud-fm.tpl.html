@@ -1,0 +1,19 @@
+<div ng-include="fileManagerCtrl.config.tplPath + '/navbar.tpl.html'"></div>
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-sm-3 col-md-2 sidebar file-tree animated slow fadeIn"
+             ng-include="fileManagerCtrl.config.tplPath + '/sidebar.tpl.html'"
+             ng-show="fileManagerCtrl.config.sidebar &amp;&amp; fileManagerCtrl.fileNavigator.history[0]"></div>
+        <div class="main"
+             ng-class="fileManagerCtrl.config.sidebar &amp;&amp; fileManagerCtrl.fileNavigator.history[0] &amp;&amp; 'col-sm-9 col-md-10'">
+            <div ng-include="fileManagerCtrl.config.tplPath + '/current-folder-breadcrumb.tpl.html'"
+                 ng-show="fileManagerCtrl.config.breadcrumb"></div>
+            <div ng-include="fileManagerCtrl.config.tplPath + '/' + fileManagerCtrl.viewTemplate"
+                 class="main-navigation clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<div ng-include="fileManagerCtrl.config.tplPath + '/modals.tpl.html'"></div>
+<div ng-include="fileManagerCtrl.config.tplPath + '/item-context-menu.tpl.html'"></div>

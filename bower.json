@@ -1,0 +1,14 @@
+{
+  "name": "ieecloud-fm",
+  "version": "0.3.2",
+  "devDependencies": {
+    "angular": "^1.4.0",
+    "angular-mocks": "~1.4",
+    "angular-ui-router": "~0.2",
+    "lodash": "~4.0.0",
+    "bootstrap": "~3.3",
+    "bootstrap-material-design": "~v0.5.9",
+    "angular-translate": "~2.9.1"
+  },
+  "dependencies": {}
+}

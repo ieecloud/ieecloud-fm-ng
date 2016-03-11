@@ -1,0 +1,46 @@
+<table class="table table-condensed table-modal-condensed mb0">
+    <thead>
+        <tr>
+            <th>
+                <a href="" ng-click="order('model.name')">
+                    {{"name" | translate}}
+                    <span class="sortorder" ng-show="predicate[1] === 'model.name'" ng-class="{reverse:reverse}"></span>
+                </a>
+            </th>
+            <th class="text-right"></th>
+        </tr>
+    </thead>
+    <tbody class="file-item">
+        <tr ng-show="fileManagerCtrl.fileNavigator.requesting">
+            <td colspan="2">
+                <div ng-include="fileManagerCtrl.config.tplPath + '/spinner.tpl.html'"></div>
+            </td>
+        </tr>
+        <tr ng-show="!fileManagerCtrl.fileNavigator.requesting && !fileManagerCtrl.fileNavigator.listHasFolders() && !fileManagerCtrl.fileNavigator.error">
+            <td colspan="2">
+                {{"no_folders_in_folder" | translate}}...
+            </td>
+            <td class="text-right">
+                <button class="btn btn-sm btn-default" ng-click="fileManagerCtrl.fileNavigator.upDir()">{{"go_back" | translate}}</button>
+            </td>
+        </tr>
+        <tr ng-show="!fileManagerCtrl.fileNavigator.requesting && fileManagerCtrl.fileNavigator.error">
+            <td colspan="2">
+                {{ fileManagerCtrl.fileNavigator.error }}
+            </td>
+        </tr>
+        <tr ng-repeat="item in fileManagerCtrl.fileNavigator.fileList | orderBy:predicate:reverse" ng-show="!fileManagerCtrl.fileNavigator.requesting && item.model.type === 'dir'">
+            <td>
+                <a href="" ng-click="fileManagerCtrl.fileNavigator.folderClick(item)" title="{{item.model.name}} ({{item.model.size | humanReadableFileSize}})">
+                    <i class="glyphicon glyphicon-folder-close"></i>
+                    {{item.model.name | strLimit : 32}}
+                </a>
+            </td>
+            <td class="text-right">
+                <button class="btn btn-sm btn-default" ng-click="select(item, temp)">
+                    <i class="glyphicon glyphicon-hand-up"></i> {{"select_this" | translate}}
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
