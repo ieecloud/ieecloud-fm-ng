@@ -2,7 +2,7 @@ angular.module('ieecloud-fm.config', ['pascalprecht.translate']).provider('fileM
     var values = {
         appName: 'ieecloud-fm',
         defaultLang: 'en',
-        listUrl: 'http://10.66.13.144:9000/api/jsonws/fm/listUrl',
+        listUrl: 'http://eprupetw6356:9000/api/jsonws/fm/listUrl',
         uploadUrl: 'bridges/php/handler.php',
         renameUrl: 'bridges/php/handler.php',
         copyUrl: 'bridges/php/handler.php',
