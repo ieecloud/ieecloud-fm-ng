@@ -13,7 +13,7 @@
       <div class="navbar-form navbar-right">
         <input type="text" class="form-control input-sm" ng-show="fileManagerCtrl.config.searchForm" placeholder="{{'search' | translate}}..." ng-model="fileManagerCtrl.query">
         <button class="btn btn-raised btn-default btn-sm" data-toggle="modal" data-target="#newfolder" ng-click="fileManagerCtrl.touch()">
-          <i class="material-icons">add</i>{{"create_folder" | translate}}
+          <i class="material-icons">create_new_folder</i>{{"create_folder" | translate}}
         </button>
         <button class="btn btn-raised btn-default btn-sm" data-toggle="modal" data-target="#uploadfile" ng-show="fileManagerCtrl.config.allowedActions.upload" ng-click="fileManagerCtrl.touch()">
           <i class="material-icons">file_upload</i> {{"upload_file" | translate}}

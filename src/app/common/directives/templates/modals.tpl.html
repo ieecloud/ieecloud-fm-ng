@@ -289,9 +289,12 @@
                       <tr ng-repeat="(permTypeKey, permTypeValue) in fileManagerCtrl.temp.tempModel.perms">
                           <td>{{permTypeKey | translate}}</td>
                           <td ng-repeat="(permKey, permValue) in permTypeValue" class="col-xs-1 text-center" ng-click="main()">
-                              <label class="col-xs-12">
-                                <input type="checkbox" ng-model="fileManagerCtrl.temp.tempModel.perms[permTypeKey][permKey]">
-                              </label>
+                              <div class="checkbox">
+                                  <label>
+                                      <input type="checkbox" ng-model="fileManagerCtrl.temp.tempModel.perms[permTypeKey][permKey]">
+                                  </label>
+                              </div>
+
                           </td>
                       </tr>
                 </tbody>
