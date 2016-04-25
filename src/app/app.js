@@ -1,4 +1,5 @@
 angular.module( 'ieecloud-fm', [
+  'ngMaterial',
   'ieecloud-fm.config',
   'templates-app',
   'templates-common',
@@ -6,7 +7,8 @@ angular.module( 'ieecloud-fm', [
   'ui.router'
 ])
 
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider , fileManagerConfigProvider, $httpProvider) {
+.config( function myAppConfig ( $stateProvider, $urlRouterProvider , fileManagerConfigProvider, $mdThemingProvider) {
+  $mdThemingProvider.theme('default');
   $urlRouterProvider.otherwise( '/home' );
 
   var defaults = fileManagerConfigProvider.$get();

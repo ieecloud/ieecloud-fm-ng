@@ -6,9 +6,8 @@
     "angular-mocks": "~1.4",
     "angular-ui-router": "~0.2",
     "lodash": "~4.0.0",
-    "bootstrap": "~3.3",
-    "bootstrap-material-design": "~v0.5.9",
-    "angular-translate": "~2.9.1"
+    "angular-translate": "~2.9.1",
+    "angular-material": "^1.1.0-rc4"
   },
   "dependencies": {},
   "homepage": "https://github.com/ieecloud/ieecloud-fm",
@@ -26,5 +25,8 @@
     "vendor",
     "test",
     "tests"
-  ]
+  ],
+  "resolutions": {
+    "angular": "1.4.9"
+  }
 }

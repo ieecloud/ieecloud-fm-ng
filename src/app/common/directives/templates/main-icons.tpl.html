@@ -1,13 +1,19 @@
-<div class="iconset clearfix">
-    <div class="col-120" ng-repeat="item in fileManagerCtrl.fileNavigator.fileList | filter: query | orderBy: orderProp" ng-show="!fileManagerCtrl.fileNavigator.requesting && !fileManagerCtrl.fileNavigator.error">
-        <a href="" class="thumbnail text-center" ng-click="fileManagerCtrl.smartClick(item)" ng-right-click="touch(item)" title="{{item.model.name}} ({{item.model.size | humanReadableFileSize}})">
-            <div class="item-icon">
-                <i class="material-icons" ng-show="item.model.type === 'dir'">folder</i>
-                <i class="material-icons" ng-show="item.model.type === 'file'">insert_drive_file</i>
-            </div>
-            {{item.model.name | strLimit : 11 }}
-        </a>
+<div class="iconset">
+    <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
+        <md-whiteframe class="md-whiteframe-5dp" ng-repeat="item in fileManagerCtrl.fileNavigator.fileList | filter: query | orderBy: orderProp"
+                       title="{{item.model.name}} ({{item.model.size | humanReadableFileSize}})" ng-click="fileManagerCtrl.smartClick(item)"
+                       flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center" ng-show="!fileManagerCtrl.fileNavigator.requesting && !fileManagerCtrl.fileNavigator.error">
+            <a href="" class="text-center"
+               >
+                <div class="item-icon">
+                    <i class="material-icons" ng-show="item.model.type === 'dir'">folder</i>
+                    <i class="material-icons" ng-show="item.model.type === 'file'">insert_drive_file</i>
+                </div>
+                {{item.model.name | strLimit : 11 }}
+            </a>
+        </md-whiteframe>
     </div>
+
 
     <div ng-show="fileManagerCtrl.fileNavigator.requesting">
         <div ng-include="fileManagerCtrl.config.tplPath + '/spinner.tpl.html'"></div>

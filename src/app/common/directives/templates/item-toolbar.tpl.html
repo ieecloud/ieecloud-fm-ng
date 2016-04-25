@@ -1,31 +1,31 @@
-<div ng-show="!item.inprocess">
-    <button class="btn btn-sm btn-default" data-toggle="modal" data-target="#rename" ng-show="fileManagerCtrl.config.allowedActions.rename" ng-click="fileManagerCtrl.touch(item)" title="{{'rename' | translate}}">
-        <i class="material-icons">edit</i>
-    </button>
-    <button class="btn btn-sm btn-default" data-toggle="modal" data-target="#copy" ng-show="fileManagerCtrl.config.allowedActions.copy && !item.isFolder()" ng-click="fileManagerCtrl.touch(item)" title="{{'copy' | translate}}">
-        <i class="glyphicon glyphicon-log-out"></i>
-    </button>
-    <button class="btn btn-sm btn-default" data-toggle="modal" data-target="#edit" ng-show="fileManagerCtrl.config.allowedActions.edit && item.isEditable()" ng-click="item.getContent(); touch(item)" title="{{'edit' | translate}}">
-        <i class="glyphicon glyphicon-pencil"></i>
-    </button>
-    <button class="btn btn-sm btn-default" data-toggle="modal" data-target="#changepermissions" ng-show="fileManagerCtrl.config.allowedActions.changePermissions" ng-click="fileManagerCtrl.touch(item)" title="{{'permissions' | translate}}">
-        <i class="material-icons">lock</i>
-    </button>
-    <button class="btn btn-sm btn-default" data-toggle="modal" data-target="#compress" ng-show="fileManagerCtrl.config.allowedActions.compress && item.isCompressible()" ng-click="fileManagerCtrl.touch(item)" title="{{'compress' | translate}}">
-        <i class="glyphicon glyphicon-compressed"></i>
-    </button>
-    <button class="btn btn-sm btn-default" data-toggle="modal" data-target="#extract" ng-show="fileManagerCtrl.config.allowedActions.extract && item.isExtractable()" ng-click="fileManagerCtrl.touch(item); item.tempModel.name=''" title="{{'extract' | translate}}">
-        <i class="glyphicon glyphicon-export"></i>
-    </button>
-    <button class="btn btn-sm btn-default" ng-show="fileManagerCtrl.config.allowedActions.download && !item.isFolder()" ng-click="item.download()" title="{{'download' | translate}}">
-        <i class="glyphicon glyphicon-cloud-download"></i>
-    </button>
-    <button class="btn btn-sm btn-default" ng-show="fileManagerCtrl.config.allowedActions.preview && item.isImage()" ng-click="fileManagerCtrl.openImagePreview(item)" title="{{'view_item' | translate}}">
-        <i class="glyphicon glyphicon-picture"></i>
-    </button>
-    <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete" ng-show="fileManagerCtrl.config.allowedActions.remove" ng-click="fileManagerCtrl.touch(item)" title="{{'remove' | translate}}">
-        <i class="material-icons">delete</i>
-    </button>
+<div ng-show="!item.inprocess" class="row-actions">
+    <md-button class="md-icon-button" data-toggle="modal" data-target="#rename" ng-show="fileManagerCtrl.config.allowedActions.rename" ng-click="fileManagerCtrl.touch(item)" title="{{'rename' | translate}}">
+        <md-icon class="material-icons">edit</md-icon>
+    </md-button>
+    <md-button class="md-icon-button" data-toggle="modal" data-target="#copy" ng-show="fileManagerCtrl.config.allowedActions.copy && !item.isFolder()" ng-click="fileManagerCtrl.touch(item)" title="{{'copy' | translate}}">
+        <md-icon class="glyphicon glyphicon-log-out"></md-icon>
+    </md-button>
+    <md-button class="md-icon-button" data-toggle="modal" data-target="#edit" ng-show="fileManagerCtrl.config.allowedActions.edit && item.isEditable()" ng-click="item.getContent(); touch(item)" title="{{'edit' | translate}}">
+        <md-icon class="glyphicon glyphicon-pencil"></md-icon>
+    </md-button>
+    <md-button class="md-icon-button" data-toggle="modal" data-target="#changepermissions" ng-show="fileManagerCtrl.config.allowedActions.changePermissions" ng-click="fileManagerCtrl.touch(item)" title="{{'permissions' | translate}}">
+        <md-icon class="material-icons">lock</md-icon>
+    </md-button>
+    <md-button class="md-icon-button" data-toggle="modal" data-target="#compress" ng-show="fileManagerCtrl.config.allowedActions.compress && item.isCompressible()" ng-click="fileManagerCtrl.touch(item)" title="{{'compress' | translate}}">
+        <md-icon class="glyphicon glyphicon-compressed"></md-icon>
+    </md-button>
+    <md-button class="md-icon-button" data-toggle="modal" data-target="#extract" ng-show="fileManagerCtrl.config.allowedActions.extract && item.isExtractable()" ng-click="fileManagerCtrl.touch(item); item.tempModel.name=''" title="{{'extract' | translate}}">
+        <md-icon class="glyphicon glyphicon-export"></md-icon>
+    </md-button>
+    <md-button class="md-icon-button" ng-show="fileManagerCtrl.config.allowedActions.download && !item.isFolder()" ng-click="item.download()" title="{{'download' | translate}}">
+        <md-icon class="glyphicon glyphicon-cloud-download"></md-icon>
+    </md-button>
+    <md-button class="md-icon-button" ng-show="fileManagerCtrl.config.allowedActions.preview && item.isImage()" ng-click="fileManagerCtrl.openImagePreview(item)" title="{{'view_item' | translate}}">
+        <md-icon class="glyphicon glyphicon-picture"></md-icon>
+    </md-button>
+    <md-button class="md-icon-button" data-toggle="modal" data-target="#delete" ng-show="fileManagerCtrl.config.allowedActions.remove" ng-click="fileManagerCtrl.touch(item)" title="{{'remove' | translate}}">
+        <md-icon class="material-icons">delete</md-icon>
+    </md-button>
 </div>
 <div ng-show="item.inprocess">
     <button class="btn btn-sm" style="visibility: hidden">&nbsp;</button><span class="label label-warning">{{"wait" | translate}} ...</span>

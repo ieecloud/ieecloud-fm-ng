@@ -1,14 +1,26 @@
-<ol class="breadcrumb mb0">
+<ol class="breadcrumb">
     <li>
-        <a href="" ng-click="fileManagerCtrl.fileNavigator.goTo(-1)">
-            <i class="glyphicon glyphicon-folder-open mr2"></i>
+        <md-button class="md-icon-button" ng-click="fileManagerCtrl.fileNavigator.goTo(-1)">
+            <md-icon class="material-icons">folder_open</md-icon>
+        </md-button>
+    </li>
+    <li ng-repeat="(key, dir) in fileManagerCtrl.fileNavigator.currentPath track by key" ng-class="{'active':$last}"
+        class="animated fast fadeIn">
+        <a ng-show="!$last">
+            <md-button class="md-icon-button" ng-click="fileManagerCtrl.fileNavigator.goTo(key)">
+                <md-icon class="material-icons">folder_open</md-icon>
+            </md-button>
+            {{dir.currentPath}}
+        </a>
+        <a ng-show="$last">
+            <md-button class="md-icon-button">
+                <md-icon class="material-icons">folder_open</md-icon>
+            </md-button>
+            {{dir.currentPath}}
         </a>
     </li>
-    <li ng-repeat="(key, dir) in fileManagerCtrl.fileNavigator.currentPath track by key" ng-class="{'active':$last}" class="animated fast fadeIn">
-        <a href="" ng-show="!$last" ng-click="fileManagerCtrl.fileNavigator.goTo(key)">
-            <i class="glyphicon glyphicon-folder-open mr2"></i> {{dir.currentPath}}
-        </a>
-        <span ng-show="$last"><i class="glyphicon glyphicon-folder-open mr2"></i>  {{dir.currentPath}}</span>
-    </li>
-    <li><button class="btn btn-primary btn-xs" ng-click="fileManagerCtrl.fileNavigator.upDir()">&crarr;</button></li>
+    <li>
+        <md-button class="md-icon-button" ng-click="fileManagerCtrl.fileNavigator.upDir()">
+            <md-icon class="material-icons">subdirectory_arrow_left</md-icon>
+        </md-button>
 </ol>

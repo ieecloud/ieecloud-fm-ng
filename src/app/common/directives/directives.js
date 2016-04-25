@@ -32,7 +32,16 @@ angular.module('ieecloud-fm')
 
 
 
-            self.setTemplate = function(name) {
+            self.toggleTemplate = function() {
+                if(self.viewTemplate === 'main-icons.tpl.html'){
+                    self.viewTemplate = 'main-table.tpl.html';
+                }else{
+                    self.viewTemplate = 'main-icons.tpl.html';
+                }
+                $storage.setItem('viewTemplate', self.viewTemplate);
+            };
+
+            self.setTemplate = function() {
                 $storage.setItem('viewTemplate', name);
                 self.viewTemplate = name;
             };

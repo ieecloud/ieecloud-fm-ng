@@ -48,19 +48,15 @@ module.exports = {
       'vendor/jquery/dist/jquery.js',
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-ui-utils/modules/route/route.js',
-      'vendor/bootstrap/dist/js/bootstrap.min.js',
-      'vendor/bootstrap-material-design/dist/js/ripples.js',
-      'vendor/bootstrap-material-design/dist/js/material.js',
+      'vendor/angular-animate/angular-animate.min.js',
+      'vendor/angular-aria/angular-aria.min.js',
+      'vendor/angular-material/angular-material.min.js',
       'vendor/angular-translate/angular-translate.js',
       'vendor/lodash/lodash.js'
     ],
     css: [
     ],
     assets: [
-
-      'vendor/bootstrap/fonts/glyphicons-halflings-regular.ttf',
-      'vendor/bootstrap/fonts/glyphicons-halflings-regular.woff',
-      'vendor/bootstrap/fonts/glyphicons-halflings-regular.woff2',
     ]
-  },
+  }
 };

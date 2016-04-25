@@ -1,44 +1,39 @@
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand hidden-xs" href="" ng-click="fileManagerCtrl.fileNavigator.goTo(-1)">{{fileManagerCtrl.config.appName}}</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <div class="navbar-form navbar-right">
-        <input type="text" class="form-control input-sm" ng-show="fileManagerCtrl.config.searchForm" placeholder="{{'search' | translate}}..." ng-model="fileManagerCtrl.query">
-        <button class="btn btn-raised btn-default btn-sm" data-toggle="modal" data-target="#newfolder" ng-click="fileManagerCtrl.touch()">
-          <i class="material-icons">create_new_folder</i>{{"create_folder" | translate}}
-        </button>
-        <button class="btn btn-raised btn-default btn-sm" data-toggle="modal" data-target="#uploadfile" ng-show="fileManagerCtrl.config.allowedActions.upload" ng-click="fileManagerCtrl.touch()">
-          <i class="material-icons">file_upload</i> {{"upload_file" | translate}}
-        </button>
+<md-toolbar class="md-hue-2">
+  <div class="md-toolbar-tools">
+    <h2>
+      <span ng-click="fileManagerCtrl.fileNavigator.goTo(-1)">File Manager</span>
+    </h2>
+    <span flex></span>
+    <!--<md-input-container md-no-float class="md-block">-->
+      <!--<input type="text" ng-show="fileManagerCtrl.config.searchForm" placeholder="{{'search' | translate}}..." ng-model="fileManagerCtrl.query">-->
+    <!--</md-input-container>-->
+    <md-button class="md-icon-button" aria-label="Favorite" data-toggle="modal" data-target="#newfolder"  ng-click="fileManagerCtrl.touch()">
+      <md-icon  class="material-icons" >
+        create_new_folder
+      </md-icon>
+    </md-button>
+    <md-button class="md-icon-button" aria-label="More" data-toggle="modal" data-target="#uploadfile" ng-show="fileManagerCtrl.config.allowedActions.upload" ng-click="fileManagerCtrl.touch()">
+      <md-icon  class="material-icons" >
+        file_upload
+      </md-icon>
+    </md-button>
+    <md-button class="md-icon-button"  title="{{'icons' | translate}}" ng-click="fileManagerCtrl.toggleTemplate()">
+      <md-icon  class="material-icons" ng-if="fileManagerCtrl.viewTemplate !== 'main-icons.tpl.html'"  >
+        view_module
+      </md-icon>
+      <md-icon  class="material-icons" ng-if="fileManagerCtrl.viewTemplate !== 'main-table.tpl.html'"  >
+        view_list
+      </md-icon>
+    </md-button>
+    <md-select class="mode-select"  ng-model="currentLang" ng-change="fileManagerCtrl.changeLanguage(currentLang)">
+      <md-option value="en">{{"english" | translate}}</md-option>
+      <md-option value="es">{{"spanish" | translate}}</md-option>
+      <md-option value="pt">{{"portuguese" | translate}}</md-option>
+      <md-option value="fr">{{"french" | translate}}</md-option>
+      <md-option value="de">{{"german" | translate}}</md-option>
+      <md-option value="he">{{"hebrew" | translate}}</md-option>
+    </md-select>
 
-        <button class="btn btn-raised btn-default btn-sm dropdown-toggle" type="button" id="dropDownMenuLang" data-toggle="dropdown" aria-expanded="true">
-          <i class="material-icons">public</i>{{"language" | translate}} <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dropDownMenuLang">
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="" ng-click="fileManagerCtrl.changeLanguage('en')">{{"english" | translate}}</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="" ng-click="fileManagerCtrl.changeLanguage('es')">{{"spanish" | translate}}</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="" ng-click="fileManagerCtrl.changeLanguage('pt')">{{"portuguese" | translate}}</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="" ng-click="fileManagerCtrl.changeLanguage('fr')">{{"french" | translate}}</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="" ng-click="fileManagerCtrl.changeLanguage('de')">{{"german" | translate}}</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="" ng-click="fileManagerCtrl.changeLanguage('he')">{{"hebrew" | translate}}</a></li>
-        </ul>
 
-        <button class="btn btn-default btn-sm" ng-click="fileManagerCtrl.setTemplate('main-icons.tpl.html')" ng-show="fileManagerCtrl.viewTemplate !== 'main-icons.tpl.html'" title="{{'icons' | translate}}">
-            <i class="glyphicon glyphicon-th-large"></i>
-        </button>
-        <button class="btn btn-default btn-sm" ng-click="fileManagerCtrl.setTemplate('main-table.tpl.html')" ng-show="fileManagerCtrl.viewTemplate !== 'main-table.tpl.html'" title="{{'list' | translate}}">
-            <i class="glyphicon glyphicon-th-list"></i>
-        </button>
-
-      </div>
-    </div>
   </div>
-</nav>
+</md-toolbar>

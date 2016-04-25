@@ -1,71 +1,79 @@
-<table class="table mb0 table-files">
-    <thead>
-        <tr>
-            <th>
-                <a href="" ng-click="fileManagerCtrl.order('model.name')">
-                    {{"name" | translate}}
-                    <span class="sortorder" ng-show="predicate[1] === 'model.name'" ng-class="{reverse:reverse}"></span>
-                </a>
-            </th>
-            <th class="hidden-xs" ng-hide="fileManagerCtrl.config.hideSize">
-                <a href="" ng-click="fileManagerCtrl.order('model.size')">
-                    {{"size" | translate}}
-                    <span class="sortorder" ng-show="predicate[1] === 'model.size'" ng-class="{reverse:reverse}"></span>
-                </a>
-            </th>
-            <th class="hidden-sm hidden-xs" ng-hide="fileManagerCtrl.config.hideDate">
-                <a href="" ng-click="fileManagerCtrl.order('model.date')">
-                    {{"date" | translate}}
-                    <span class="sortorder" ng-show="predicate[1] === 'model.date'" ng-class="{reverse:reverse}"></span>
-                </a>
-            </th>
-            <th class="hidden-sm hidden-xs" ng-hide="fileManagerCtrl.config.hidePermissions">
-                <a href="" ng-click="fileManagerCtrl.order('model.permissions')">
-                    {{"permissions" | translate}}
-                    <span class="sortorder" ng-show="predicate[1] === 'model.permissions'" ng-class="{reverse:reverse}"></span>
-                </a>
-            </th>
-            <th class="text-right"></th>
-        </tr>
-    </thead>
-    <tbody class="file-item">
-        <tr ng-show="fileNavigator.requesting">
-            <td colspan="5">
-                <div ng-include="fileManagerCtrl.config.tplPath + '/spinner.tpl.html'"></div>
-            </td>
-        </tr>
-        <tr ng-show="!fileManagerCtrl.fileNavigator.requesting &amp;&amp; fileManagerCtrl.fileNavigator.fileList.length < 1 &amp;&amp; !fileManagerCtrl.fileNavigator.error">
-            <td colspan="5">
-                {{"no_files_in_folder" | translate}}...
-            </td>
-        </tr>
-        <tr ng-show="!fileManagerCtrl.fileNavigator.requesting &amp;&amp; fileManagerCtrl.fileNavigator.error">
-            <td colspan="5">
-                {{ fileManagerCtrl.fileNavigator.error }}
-            </td>
-        </tr>
-        <tr ng-repeat="item in fileManagerCtrl.fileNavigator.fileList | filter: {model:{name: query}} | orderBy:predicate:reverse" ng-show="!fileManagerCtrl.fileNavigator.requesting">
-            <td ng-right-click="touch(item)">
-                <a href="" ng-click="fileManagerCtrl.smartClick(item)" title="{{item.model.name}} ({{item.model.size | humanReadableFileSize}})">
-                    <i class="material-icons" ng-show="item.model.type === 'dir'">folder</i>
-                    <i class="material-icons" ng-show="item.model.type === 'file'">insert_drive_file</i>
-                    {{item.model.name | strLimit : 64}}
-                </a>
-            </td>
-            <td class="hidden-xs">
+    <div class="table-responsive-vertical shadow-z-1" md-whiteframe="3" >
+        <!-- Table starts here -->
+        <table id="table" class="table  table-mc-light-blue">
+            <thead>
+            <tr>
+                <th>
+                    <span ng-click="fileManagerCtrl.order('model.name')">
+                        {{"name" | translate}}
+                        <span class="sortorder" ng-show="predicate[1] === 'model.name'" ng-class="{reverse:reverse}"></span>
+                    </span>
+                </th>
+                <th class="hidden-xs" ng-hide="fileManagerCtrl.config.hideSize">
+                    <span href="" ng-click="fileManagerCtrl.order('model.size')">
+                        {{"size" | translate}}
+                        <span class="sortorder" ng-show="predicate[1] === 'model.size'" ng-class="{reverse:reverse}"></span>
+                    </span>
+                </th>
+                <th class="hidden-sm hidden-xs" ng-hide="fileManagerCtrl.config.hideDate">
+                    <span href="" ng-click="fileManagerCtrl.order('model.date')">
+                        {{"date" | translate}}
+                        <span class="sortorder" ng-show="predicate[1] === 'model.date'" ng-class="{reverse:reverse}"></span>
+                    </span>
+                </th>
+                <th class="hidden-sm hidden-xs" ng-hide="fileManagerCtrl.config.hidePermissions">
+                    <span href="" ng-click="fileManagerCtrl.order('model.permissions')">
+                        {{"permissions" | translate}}
+                        <span class="sortorder" ng-show="predicate[1] === 'model.permissions'" ng-class="{reverse:reverse}"></span>
+                    </span>
+                </th>
+                <th class="text-right"></th>
+            </tr>
+            </thead>
+
+
+            <tbody>
+            <tr ng-if="fileNavigator.requesting">
+                <td colspan="5">
+                    <div ng-include="fileManagerCtrl.config.tplPath + '/spinner.tpl.html'"></div>
+                </td>
+            </tr>
+            <tr ng-if="!fileManagerCtrl.fileNavigator.requesting &amp;&amp; fileManagerCtrl.fileNavigator.fileList.length < 1 &amp;&amp; !fileManagerCtrl.fileNavigator.error">
+                <td colspan="5">
+                    {{"no_files_in_folder" | translate}}...
+                </td>
+            </tr>
+            <tr ng-if="!fileManagerCtrl.fileNavigator.requesting &amp;&amp; fileManagerCtrl.fileNavigator.error">
+                <td colspan="5">
+                    {{ fileManagerCtrl.fileNavigator.error }}
+                </td>
+            </tr>
+            <tr ng-repeat="item in fileManagerCtrl.fileNavigator.fileList | filter: {model:{name: query}} | orderBy:predicate:reverse" ng-show="!fileManagerCtrl.fileNavigator.requesting">
+                <td>
+                    <a href="" ng-click="fileManagerCtrl.smartClick(item)" title="{{item.model.name}} ({{item.model.size | humanReadableFileSize}})">
+                        <i class="material-icons" ng-show="item.model.type === 'dir'">folder</i>
+                        <i class="material-icons" ng-show="item.model.type === 'file'">insert_drive_file</i>
+                        <span>{{item.model.name | strLimit : 64}}</span>
+                    </a>
+                </td>
+                <td class="hidden-xs">
                 <span ng-show="item.model.type !== 'dir' || fileManagerCtrl.config.showSizeForDirectories">
                     {{item.model.size | humanReadableFileSize}}
                 </span>
-            </td>
-            <td class="hidden-sm hidden-xs" ng-hide="fileManagerCtrl.config.hideDate">
-                {{item.model.date | formatDate }}
-            </td>
-            <td class="hidden-sm hidden-xs" ng-hide="fileManagerCtrl.config.hidePermissions">
-                {{item.model.perms.toCode(item.model.type === 'dir'?'d':'-')}}
-            </td>
-            <td class="text-right">
-                <div ng-include="fileManagerCtrl.config.tplPath + '/item-toolbar.tpl.html'"></div>
-            </td>
-        </tr>
-    </tbody>
-</table>
+                </td>
+                <td class="hidden-sm hidden-xs" ng-hide="fileManagerCtrl.config.hideDate">
+                    {{item.model.date | formatDate }}
+                </td>
+                <td class="hidden-sm hidden-xs" ng-hide="fileManagerCtrl.config.hidePermissions">
+                    {{item.model.perms.toCode(item.model.type === 'dir'?'d':'-')}}
+                </td>
+                <td class="text-right" style="padding: 0.9rem;">
+                    <div ng-include="fileManagerCtrl.config.tplPath + '/item-toolbar.tpl.html'"></div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
