@@ -3,9 +3,12 @@ angular.module('ieecloud-fm')
 .directive('ieecloudFm', ['$parse', 'fileManagerConfig', function ($parse, fileManagerConfig) {
     return {
         restrict: 'EA',
+        scope: {
+            onSelectFile: '&'
+        },
         templateUrl: fileManagerConfig.tplPath + '/ieecloud-fm.tpl.html',
         controllerAs: 'fileManagerCtrl',
-        controller: function(fileManagerConfig, $translate, Item, FileNavigator , FileUploader) {
+        controller: function($scope, fileManagerConfig, $translate, Item, FileNavigator , FileUploader) {
             var self = this;
             self.config = fileManagerConfig;
             var $storage = window.localStorage;
@@ -73,6 +76,7 @@ angular.module('ieecloud-fm')
                 if (item.isEditable()) {
                     return self.openEditItem(item);
                 }
+                $scope.onSelectFile({item: item.model});
             };
 
             self.openImagePreview = function(item) {

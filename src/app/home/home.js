@@ -16,7 +16,11 @@ angular.module( 'ieecloud-fm.home', [
 
 
 
-.controller( 'HomeCtrl', function HomeController( $scope ) {
+.controller( 'HomeCtrl', function HomeController( $scope , $log) {
+
+  $scope.selectFile = function(item){
+     $log.info(item);
+  };
 });
 
 
