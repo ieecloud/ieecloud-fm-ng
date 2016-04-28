@@ -1,7 +1,30 @@
 <div layout="column">
     <div flex ng-include="fileManagerCtrl.config.tplPath + '/navbar.tpl.html'"></div>
-    <md-content flex layout-padding>
-        <div layout="row">
+    <md-content flex layout-padding class="md-padding">
+
+        <div layout="row" layout-align="center center" ng-show="!fileManagerCtrl.selectedSiteID">
+            <form ng-submit="$event.preventDefault()" layout-align="center center">
+                <p>You should select an appropriate site to see the file manager content.</p>
+
+                <md-autocomplete
+                        md-selected-item="fileManagerCtrl.selectedSiteID"
+                        md-search-text="fileManagerCtrl.searchText"
+                        md-items="item in fileManagerCtrl.siteQuerySearch(fileManagerCtrl.searchText)"
+                        md-item-text="item.display"
+                        md-min-length="0"
+                        placeholder="What is your site?">
+                    <md-item-template>
+                        <span md-highlight-text="fileManagerCtrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No states matching "{{fileManagerCtrl.searchText}}" were found.
+                    </md-not-found>
+                </md-autocomplete>
+            </form>
+        </div>
+
+
+        <div layout="row" ng-show="fileManagerCtrl.selectedSiteID">
             <div flex="20" style="min-width: 200px;">
                 <div ng-include="fileManagerCtrl.config.tplPath + '/sidebar.tpl.html'"
                      ng-show="fileManagerCtrl.config.sidebar &amp;&amp; fileManagerCtrl.fileNavigator.history[0]">

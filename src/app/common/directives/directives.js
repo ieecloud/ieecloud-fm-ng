@@ -8,7 +8,7 @@ angular.module('ieecloud-fm')
         },
         templateUrl: fileManagerConfig.tplPath + '/ieecloud-fm.tpl.html',
         controllerAs: 'fileManagerCtrl',
-        controller: function($scope, fileManagerConfig, $translate, Item, FileNavigator , FileUploader) {
+        controller: function($scope, fileManagerConfig, $translate, Item, FileNavigator , FileUploader, $filter) {
             var self = this;
             self.config = fileManagerConfig;
             var $storage = window.localStorage;
@@ -31,9 +31,31 @@ angular.module('ieecloud-fm')
                 self.changeLanguage(self.getQueryParam('lang'));
                 self.isWindows = self.getQueryParam('server') === 'Windows';
                 self.fileNavigator.refresh();
+
+                self.sites = loadAll();
+                self.siteQuerySearch = siteQuerySearch;
+
+                self.selectedSiteID = null;
             };
 
 
+            function loadAll() {
+                self.fileNavigator.siteList().then(function (response) {
+                    var allSites = response.data;
+                    return allSites.map(function (site) {
+                        return {
+                            value: site.id,
+                            display: site.title
+                        };
+                    });
+                });
+            }
+
+
+            function siteQuerySearch(query) {
+                var results = query ? $filter('filter')(self.sites, query) : self.sites;
+                return results;
+            }
 
             self.toggleTemplate = function() {
                 if(self.viewTemplate === 'main-icons.tpl.html'){

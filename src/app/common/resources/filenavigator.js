@@ -66,6 +66,34 @@ angular.module('ieecloud-fm').service('FileNavigator', [
             return deferred.promise;
         };
 
+
+        FileNavigator.prototype.siteList = function () {
+            var self = this;
+            var deferred = $q.defer();
+
+            self.requesting = true;
+            self.error = '';
+
+            $http.get(fileManagerConfig.siteListUrl + '?t='+Date.now()).success(function (data) {
+                self.deferredHandler(data, deferred);
+            }).error(function (data) {
+                self.deferredHandler(data, deferred, 'Unknown error listing, check the response');
+            })['finally'](function () {
+                self.requesting = false;
+            });
+            return deferred.promise;
+        };
+
+
+        FileNavigator.prototype.refreshSiteList = function () {
+            var self = this;
+            return self.siteList().then(function (response) {
+                return response.data;
+            });
+        };
+
+
+
         FileNavigator.prototype.refresh = function () {
             var self = this;
             var path = '';
