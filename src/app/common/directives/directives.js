@@ -30,24 +30,28 @@ angular.module('ieecloud-fm')
                 self.viewTemplate = $storage.getItem('viewTemplate') || 'main-table.tpl.html';
                 self.changeLanguage(self.getQueryParam('lang'));
                 self.isWindows = self.getQueryParam('server') === 'Windows';
-                self.fileNavigator.refresh();
-
-                self.sites = loadAll();
+                loadSites();
                 self.siteQuerySearch = siteQuerySearch;
+                self.selectedSiteChange = selectedSiteChange;
 
                 self.selectedSiteID = null;
             };
 
 
-            function loadAll() {
+            function loadSites() {
+
+                self.requestSitesProgress = true;
+
                 self.fileNavigator.siteList().then(function (response) {
+
                     var allSites = response.data;
-                    return allSites.map(function (site) {
+                    self.sites =  allSites.map(function (site) {
                         return {
-                            value: site.id,
+                            value: site.rootFolderId,
                             display: site.title
                         };
                     });
+                    self.requestSitesProgress = false;
                 });
             }
 
@@ -55,6 +59,13 @@ angular.module('ieecloud-fm')
             function siteQuerySearch(query) {
                 var results = query ? $filter('filter')(self.sites, query) : self.sites;
                 return results;
+            }
+
+            function selectedSiteChange(selectedSite) {
+                self.selectedSiteID = selectedSite.value;
+                self.fileNavigator.refresh(self.selectedSiteID);
+
+
             }
 
             self.toggleTemplate = function() {

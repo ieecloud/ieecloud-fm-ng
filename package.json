@@ -7,7 +7,14 @@
     "prestart": "npm install",
     "start": "http-server -a localhost -p 8000 -c-1"
   },
-  "dependencies": {},
+  "peerDependencies": {
+    "angular": "^1.4.0",
+    "angular-mocks": "~1.4",
+    "angular-ui-router": "~0.2",
+    "lodash": "~4.0.0",
+    "angular-translate": "~2.9.1",
+    "angular-material": "^1.1.0-rc4"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-bump": "0.0.6",

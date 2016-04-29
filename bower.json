@@ -1,7 +1,7 @@
 {
   "name": "ieecloud-fm",
   "version": "0.0.1",
-  "devDependencies": {
+  "dependencies": {
     "angular": "^1.4.0",
     "angular-mocks": "~1.4",
     "angular-ui-router": "~0.2",
@@ -9,7 +9,6 @@
     "angular-translate": "~2.9.1",
     "angular-material": "^1.1.0-rc4"
   },
-  "dependencies": {},
   "homepage": "https://github.com/ieecloud/ieecloud-fm",
   "description": "Ieecloud file manager",
   "main": "app.js",

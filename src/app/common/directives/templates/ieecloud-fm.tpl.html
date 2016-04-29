@@ -2,12 +2,20 @@
     <div flex ng-include="fileManagerCtrl.config.tplPath + '/navbar.tpl.html'"></div>
     <md-content flex layout-padding class="md-padding">
 
-        <div layout="row" layout-align="center center" ng-show="!fileManagerCtrl.selectedSiteID">
+
+        <div layout="row" layout-sm="column" layout-align="space-around" ng-if="fileManagerCtrl.requestSitesProgress">
+            <md-progress-circular md-mode="indeterminate" md-diameter="70"></md-progress-circular>
+        </div>
+
+
+
+        <div layout="row" layout-align="center center" ng-if="!fileManagerCtrl.requestSitesProgress && !fileManagerCtrl.selectedSiteID">
             <form ng-submit="$event.preventDefault()" layout-align="center center">
                 <p>You should select an appropriate site to see the file manager content.</p>
 
                 <md-autocomplete
-                        md-selected-item="fileManagerCtrl.selectedSiteID"
+                        md-selected-item="fileManagerCtrl.selectedSite"
+                        md-selected-item-change="fileManagerCtrl.selectedSiteChange(item)"
                         md-search-text="fileManagerCtrl.searchText"
                         md-items="item in fileManagerCtrl.siteQuerySearch(fileManagerCtrl.searchText)"
                         md-item-text="item.display"
@@ -24,7 +32,7 @@
         </div>
 
 
-        <div layout="row" ng-show="fileManagerCtrl.selectedSiteID">
+        <div layout="row" ng-if="fileManagerCtrl.selectedSiteID">
             <div flex="20" style="min-width: 200px;">
                 <div ng-include="fileManagerCtrl.config.tplPath + '/sidebar.tpl.html'"
                      ng-show="fileManagerCtrl.config.sidebar &amp;&amp; fileManagerCtrl.fileNavigator.history[0]">

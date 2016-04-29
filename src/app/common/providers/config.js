@@ -20,6 +20,7 @@ angular.module('ieecloud-fm.config', ['pascalprecht.translate']).provider('fileM
         sidebar: true,
         breadcrumb: true,
         allowedActions: {
+            createFolder: true,
             upload: true,
             rename: true,
             copy: true,

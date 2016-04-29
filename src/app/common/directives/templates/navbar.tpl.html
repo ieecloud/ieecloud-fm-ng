@@ -7,7 +7,8 @@
     <!--<md-input-container md-no-float class="md-block">-->
       <!--<input type="text" ng-show="fileManagerCtrl.config.searchForm" placeholder="{{'search' | translate}}..." ng-model="fileManagerCtrl.query">-->
     <!--</md-input-container>-->
-    <md-button class="md-icon-button" aria-label="Favorite" data-toggle="modal" data-target="#newfolder"  ng-click="fileManagerCtrl.touch()">
+    <md-button class="md-icon-button" aria-label="Favorite" data-toggle="modal" data-target="#newfolder" ng-show="fileManagerCtrl.config.allowedActions.createFolder"
+               ng-click="fileManagerCtrl.touch()">
       <md-icon  class="material-icons" >
         create_new_folder
       </md-icon>

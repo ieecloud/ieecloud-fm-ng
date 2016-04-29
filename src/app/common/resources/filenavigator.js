@@ -12,7 +12,7 @@ angular.module('ieecloud-fm').service('FileNavigator', [
         FileNavigator.prototype.deferredHandler = function (data, deferred, defaultMsg) {
             $log.info(data);
             if (!data || typeof data !== 'object') {
-                this.error = 'Bridge response error, please check the docs';
+                this.error = 'Response error, please check the docs';
             }
             if (!this.error && data.result && data.result.error) {
                 this.error = data.result.error;
@@ -29,7 +29,7 @@ angular.module('ieecloud-fm').service('FileNavigator', [
             return deferred.resolve(data);
         };
 
-        FileNavigator.prototype.list = function () {
+        FileNavigator.prototype.list = function (siteID) {
             var self = this;
             var deferred = $q.defer();
 
@@ -39,9 +39,9 @@ angular.module('ieecloud-fm').service('FileNavigator', [
             });
             var copyCurrentPath = angular.copy(self.currentPath);
             var curPathElement = copyCurrentPath.shift();
-            var id = 1;
+            var id = siteID;
             if(curPathElement){
-                id = curPathElement.currentID || 1;
+                id = curPathElement.currentID || siteID;
             }
             var data = {
                 params: {
@@ -94,7 +94,7 @@ angular.module('ieecloud-fm').service('FileNavigator', [
 
 
 
-        FileNavigator.prototype.refresh = function () {
+        FileNavigator.prototype.refresh = function (siteID) {
             var self = this;
             var path = '';
             angular.forEach(self.currentPath, function(val){
@@ -103,7 +103,7 @@ angular.module('ieecloud-fm').service('FileNavigator', [
 
             path = path.substr(0, path.length-1);
 
-            return self.list().then(function (data) {
+            return self.list(siteID).then(function (data) {
                 self.fileList = (data.result || []).map(function (file) {
                     return new Item(file, self.currentPath);
                 });

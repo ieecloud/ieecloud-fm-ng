@@ -44,13 +44,13 @@ module.exports = {
 
   vendor_files: {
     js: [
-      'vendor/angular/angular.js',
-      'vendor/jquery/dist/jquery.js',
-      'vendor/angular-ui-router/release/angular-ui-router.js',
-      'vendor/angular-ui-utils/modules/route/route.js',
-      'vendor/angular-animate/angular-animate.min.js',
-      'vendor/angular-aria/angular-aria.min.js',
-      'vendor/angular-material/angular-material.min.js',
+      //'vendor/angular/angular.js',
+      //'vendor/jquery/dist/jquery.js',
+      //'vendor/angular-ui-router/release/angular-ui-router.js',
+      //'vendor/angular-ui-utils/modules/route/route.js',
+      //'vendor/angular-animate/angular-animate.min.js',
+      //'vendor/angular-aria/angular-aria.min.js',
+      //'vendor/angular-material/angular-material.min.js',
       'vendor/angular-translate/angular-translate.js',
       'vendor/lodash/lodash.js'
     ],
