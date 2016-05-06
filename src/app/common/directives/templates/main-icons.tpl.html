@@ -1,8 +1,8 @@
-<div class="iconset">
-    <div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
+<div class="iconset {{fileManagerCtrl.config.cssClasses.iconsPanelClass}}">
+    <div layout="row" layout-padding layout-wrap layout-fill style="overflow-y: auto;" ng-cloak ng-if="!fileManagerCtrl.fileNavigator.requesting">
         <md-whiteframe class="md-whiteframe-5dp" ng-repeat="item in fileManagerCtrl.fileNavigator.fileList | filter: query | orderBy: orderProp"
-                       title="{{item.model.name}} ({{item.model.size | humanReadableFileSize}})" ng-click="fileManagerCtrl.smartClick(item)"
-                       flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center" ng-show="!fileManagerCtrl.fileNavigator.requesting && !fileManagerCtrl.fileNavigator.error">
+                       title="{{item.model.name}} ({{item.model.size | humanReadableFileSize}})" ng-click="fileManagerCtrl.smartClick(item)" style="max-height:10%;"
+                       flex-sm="35" flex-gt-sm="15" flex-gt-md="10" layout-gt-md="10" layout layout-align="center center" ng-show="!fileManagerCtrl.fileNavigator.requesting && !fileManagerCtrl.fileNavigator.error">
             <a href="" class="text-center"
                >
                 <div class="item-icon">
@@ -15,9 +15,7 @@
     </div>
 
 
-    <div ng-show="fileManagerCtrl.fileNavigator.requesting">
-        <div ng-include="fileManagerCtrl.config.tplPath + '/spinner.tpl.html'"></div>
-    </div>
+    <div ng-if="fileManagerCtrl.fileNavigator.requesting" ng-include="fileManagerCtrl.config.tplPath + '/spinner.tpl.html'"></div>
 
     <div class="alert alert-warning" ng-show="!fileManagerCtrl.fileNavigator.requesting && fileManagerCtrl.fileNavigator.fileList.length < 1 && !fileManagerCtrl.fileNavigator.error">
         {{"no_files_in_folder" | translate}}...

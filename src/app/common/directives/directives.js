@@ -63,7 +63,7 @@ angular.module('ieecloud-fm')
 
             function selectedSiteChange(selectedSite) {
                 self.selectedSiteID = selectedSite.value;
-                self.fileNavigator.refresh(self.selectedSiteID);
+                self.fileNavigator.loadRootFolder(self.selectedSiteID);
 
 
             }

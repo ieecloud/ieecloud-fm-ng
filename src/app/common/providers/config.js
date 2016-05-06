@@ -34,6 +34,11 @@ angular.module('ieecloud-fm.config', ['pascalprecht.translate']).provider('fileM
             remove: true
         },
 
+        cssClasses : {
+          iconsPanelClass : '',
+          sideBarPanelClass : ''
+        },
+
         showSizeForDirectories: true,
         useBinarySizePrefixes: false,
 

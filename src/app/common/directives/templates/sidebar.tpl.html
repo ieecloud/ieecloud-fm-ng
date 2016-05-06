@@ -1,14 +1,21 @@
-<md-list  ng-cloak>
-    <md-subheader class="md-no-sticky">Navigator</md-subheader>
-    <md-list-item ng-repeat="item in fileManagerCtrl.fileNavigator.history">
-        <div ng-include="'folder-branch-item'" ng-class="{'active': item.name == fileManagerCtrl.fileNavigator.currentPath.join('/')}"></div>
-    </md-list-item>
 
-</md-list>
+<md-content style="">
+    <section>
+        <md-list class="{{fileManagerCtrl.config.cssClasses.sideBarPanelClass}}">
+
+            <md-list-item ng-repeat="item in fileManagerCtrl.fileNavigator.history">
+                <div ng-include="'folder-branch-item'" ng-class="{'active': item.name == fileManagerCtrl.fileNavigator.currentPath.join('/')}"></div>
+            </md-list-item>
+
+        </md-list>
+    </section>
+</md-content>
+
+
 
 <script type="text/ng-template" id="folder-branch-item">
-    <a>
-        <md-button class="md-icon-button"  ng-click="fileManagerCtrl.fileNavigator.folderClick(item.item)">
+    <a ng-click="fileManagerCtrl.fileNavigator.folderClick(item.item)" style="cursor:pointer;">
+        <md-button class="md-icon-button">
             <md-icon class="material-icons" ng-hide="fileManagerCtrl.isInThisPath(item.name)" style="vertical-align: bottom">folder_open</md-icon>
             <md-icon class="material-icons" ng-show="fileManagerCtrl.isInThisPath(item.name)" style="vertical-align: bottom">folder_close</md-icon>
         </md-button>

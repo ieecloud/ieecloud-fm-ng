@@ -38,7 +38,7 @@ angular.module('ieecloud-fm').service('FileNavigator', [
                 path =+ val.currentPath ?  val.currentPath + '/' : '';
             });
             var copyCurrentPath = angular.copy(self.currentPath);
-            var curPathElement = copyCurrentPath.shift();
+            var curPathElement = _.last(copyCurrentPath);
             var id = siteID;
             if(curPathElement){
                 id = curPathElement.currentID || siteID;
@@ -94,7 +94,7 @@ angular.module('ieecloud-fm').service('FileNavigator', [
 
 
 
-        FileNavigator.prototype.refresh = function (siteID) {
+        FileNavigator.prototype.refresh = function () {
             var self = this;
             var path = '';
             angular.forEach(self.currentPath, function(val){
@@ -103,11 +103,25 @@ angular.module('ieecloud-fm').service('FileNavigator', [
 
             path = path.substr(0, path.length-1);
 
-            return self.list(siteID).then(function (data) {
+            return self.list().then(function (data) {
                 self.fileList = (data.result || []).map(function (file) {
                     return new Item(file, self.currentPath);
                 });
                 self.buildTree(path);
+            });
+        };
+
+        FileNavigator.prototype.loadRootFolder = function (siteID) {
+            var self = this;
+            var pathObj = {currentPath : '', currentID : siteID, type : 'dir'};
+
+            self.currentPath.push(pathObj);
+
+            return self.list(siteID).then(function (data) {
+                self.fileList = (data.result || []).map(function (file) {
+                    return new Item(file, self.currentPath);
+                });
+                self.buildTree(pathObj.currentPath);
             });
         };
 
@@ -164,22 +178,27 @@ angular.module('ieecloud-fm').service('FileNavigator', [
         };
 
         FileNavigator.prototype.folderClick = function (item) {
-            this.currentPath = [];
             if (item && item.isFolder()) {
+                this.currentPath = [];
                 this.currentPath = item.model.currentPath();
             }
+            if(!item){
+                this.currentPath = _.slice(this.currentPath, 0, 1);
+            }
+
             this.refresh();
         };
 
         FileNavigator.prototype.upDir = function () {
-            if (this.currentPath[0]) {
-                this.currentPath = this.currentPath.slice(0, -1);
+           var tempPath = _.dropRight(this.currentPath);
+            if (tempPath.length > 0) {
+                this.currentPath = tempPath;
                 this.refresh();
             }
         };
 
-        FileNavigator.prototype.goTo = function (index) {
-            this.currentPath = this.currentPath.slice(0, index + 1);
+        FileNavigator.prototype.goTo = function (index, id) {
+            this.currentPath = _.slice(this.currentPath, 0, index + 1);
             this.refresh();
         };
 

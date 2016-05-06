@@ -1,19 +1,9 @@
 <ol class="breadcrumb">
-    <li>
-        <md-button class="md-icon-button" ng-click="fileManagerCtrl.fileNavigator.goTo(-1)">
-            <md-icon class="material-icons">folder_open</md-icon>
-        </md-button>
-    </li>
-    <li ng-repeat="(key, dir) in fileManagerCtrl.fileNavigator.currentPath track by key" ng-class="{'active':$last}"
-        class="animated fast fadeIn">
-        <a ng-show="!$last">
-            <md-button class="md-icon-button" ng-click="fileManagerCtrl.fileNavigator.goTo(key)">
-                <md-icon class="material-icons">folder_open</md-icon>
-            </md-button>
-            {{dir.currentPath}}
-        </a>
-        <a ng-show="$last">
-            <md-button class="md-icon-button">
+    <li ng-repeat="(key, dir) in fileManagerCtrl.fileNavigator.currentPath track by key"
+        ng-class="{'active':$last}" >
+
+        <a>
+            <md-button class="md-icon-button" ng-click="fileManagerCtrl.fileNavigator.goTo(key, dir.currentID)">
                 <md-icon class="material-icons">folder_open</md-icon>
             </md-button>
             {{dir.currentPath}}

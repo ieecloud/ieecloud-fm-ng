@@ -1,4 +1,4 @@
-    <div class="table-responsive-vertical shadow-z-1" md-whiteframe="3" >
+    <div class="table-responsive-vertical shadow-z-1" md-whiteframe="3" style="margin: 25px;">
         <!-- Table starts here -->
         <table id="table" class="table  table-mc-light-blue">
             <thead>
@@ -31,24 +31,25 @@
             </tr>
             </thead>
 
+            <tbody ng-if="fileManagerCtrl.fileNavigator.requesting">
+            <td style="width:100%;">
+                <div ng-include="fileManagerCtrl.config.tplPath + '/spinner.tpl.html'"></div>
+            </td>
+            </tbody>
 
-            <tbody>
-            <tr ng-if="fileManagerCtrl.fileNavigator.requesting">
-                <td colspan="5">
-                    <div ng-include="fileManagerCtrl.config.tplPath + '/spinner.tpl.html'"></div>
-                </td>
-            </tr>
-            <tr ng-if="!fileManagerCtrl.fileNavigator.requesting &amp;&amp; fileManagerCtrl.fileNavigator.fileList.length < 1 &amp;&amp; !fileManagerCtrl.fileNavigator.error">
-                <td colspan="5">
+
+            <tbody ng-if="!fileManagerCtrl.fileNavigator.requesting">
+            <tr ng-if="fileManagerCtrl.fileNavigator.fileList.length < 1 &amp;&amp; !fileManagerCtrl.fileNavigator.error">
+                <td style="width:100%;">>
                     {{"no_files_in_folder" | translate}}...
                 </td>
             </tr>
-            <tr ng-if="!fileManagerCtrl.fileNavigator.requesting &amp;&amp; fileManagerCtrl.fileNavigator.error">
-                <td colspan="5">
+            <tr ng-if="fileManagerCtrl.fileNavigator.error">
+                <td style="width:100%;">
                     {{ fileManagerCtrl.fileNavigator.error }}
                 </td>
             </tr>
-            <tr ng-repeat="item in fileManagerCtrl.fileNavigator.fileList | filter: {model:{name: query}} | orderBy:predicate:reverse" ng-show="!fileManagerCtrl.fileNavigator.requesting">
+            <tr ng-repeat="item in fileManagerCtrl.fileNavigator.fileList | filter: {model:{name: query}} | orderBy:predicate:reverse">
                 <td>
                     <a href="" ng-click="fileManagerCtrl.smartClick(item)" title="{{item.model.name}} ({{item.model.size | humanReadableFileSize}})">
                         <i class="material-icons" ng-show="item.model.type === 'dir'">folder</i>

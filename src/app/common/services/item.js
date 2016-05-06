@@ -15,24 +15,17 @@ angular.module('ieecloud-fm').factory('Item', ['$http', '$q', '$translate', 'fil
                 return Math.round(this.size / 1024, 1);
             },
             fullPath: function () {
-                return ('/' + this.path.join('/') + '/' + this.name).replace(/\/\//, '/');
+                var path = this.path.filter(Boolean);
+                return ('/' + path.join('/') + '/' + this.name).replace(/\/\//, '/');
+            },
+
+           lastPath: function () {
+                return this.path;
             },
 
             currentPath: function () {
-                var result = [];
-                var lastPath = '';
-                angular.forEach(this.path, function(val){
-                    lastPath = lastPath + val.currentPath ?  val.currentPath + '/' : '';
-                });
-
-                lastPath = lastPath.substr(0, lastPath.length-1);
-
-                var pathString =  ('/' + lastPath + '/' + this.name).replace(/\/\//, '/');
-                var stringArray = pathString.split('/').splice(1);
-
-                angular.forEach(stringArray, function(val){
-                    result.push({currentPath : val, currentID : model.id, type : model.type});
-                });
+                var result = angular.copy(this.lastPath());
+                result.push({currentPath : this.name, currentID : model.id, type : model.type});
                 return result;
             }
         };

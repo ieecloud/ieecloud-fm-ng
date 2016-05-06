@@ -36,6 +36,55 @@
 
 /* -- Material Design Table style -------------- */
 
+
+
+
+table {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 300px;
+}
+
+table * {
+  box-sizing: inherit;
+  -moz-box-sizing: inherit;
+}
+
+thead {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+tbody {
+  overflow-y: auto;
+  display: inline-block;
+}
+
+
+thead > tr, tbody > tr, tfoot > tr {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+thead, tfoot {
+  flex-shrink: 0;
+}
+
+th, tbody td {
+  width: 50%;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+
+
+
 .table > thead > tr > th,
 .table > tbody > tr > th,
 .table > tfoot > tr > th,
@@ -73,7 +122,7 @@
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
   text-align: left;
-  padding: 1.6rem;
+  padding: 1rem;
   vertical-align: top;
   border-top: 0;
   -webkit-transition: all 0.3s ease;
@@ -594,8 +643,8 @@
 
 
 .breadcrumb {
-  padding: 8px 15px;
-  margin-bottom: 20px;
+  padding: 8px 0px;
+  margin: 0px;
   list-style: none;
   background-color: #f5f5f5;
   .md-button.md-icon-button {
