@@ -33,6 +33,7 @@ angular.module('ieecloud-fm')
                 loadSites();
                 self.siteQuerySearch = siteQuerySearch;
                 self.selectedSiteChange = selectedSiteChange;
+                self.reloadSites = reloadSites;
 
                 self.selectedSiteID = null;
             };
@@ -53,6 +54,10 @@ angular.module('ieecloud-fm')
                     });
                     self.requestSitesProgress = false;
                 });
+            }
+
+            function reloadSites() {
+                self.selectedSiteID = null;
             }
 
 

@@ -113,6 +113,7 @@ angular.module('ieecloud-fm').service('FileNavigator', [
 
         FileNavigator.prototype.loadRootFolder = function (siteID) {
             var self = this;
+            self.currentPath = [];
             var pathObj = {currentPath : '', currentID : siteID, type : 'dir'};
 
             self.currentPath.push(pathObj);

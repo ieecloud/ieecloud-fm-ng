@@ -18,6 +18,14 @@
         file_upload
       </md-icon>
     </md-button>
+
+    <md-button class="md-icon-button" aria-label="Site"
+               ng-click="fileManagerCtrl.reloadSites()">
+      <md-icon  class="material-icons" >
+        autorenew
+      </md-icon>
+    </md-button>
+
     <md-button class="md-icon-button"  title="{{'icons' | translate}}" ng-click="fileManagerCtrl.toggleTemplate()">
       <md-icon  class="material-icons" ng-if="fileManagerCtrl.viewTemplate !== 'main-icons.tpl.html'"  >
         view_module
