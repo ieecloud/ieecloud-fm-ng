@@ -358,11 +358,7 @@ module.exports = function ( grunt ) {
     var jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
       return file.replace( dirRE, '' );
     });
-
-    console.log(this.filesSrc );
-
     var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
-      console.log(file);
       return file.replace( dirRE, '' );
     });
 

@@ -11,7 +11,10 @@
   },
   "homepage": "https://github.com/ieecloud/ieecloud-fm",
   "description": "Ieecloud file manager",
-  "main": "bin/ieecloud-fm-0.0.1.js",
+  "main": [
+    "bin/ieecloud-fm-0.0.1.js",
+    "bin/ieecloud-fm-0.0.1.css"
+  ],
   "moduleType": [],
   "authors": [
     "Ieecloud"
