@@ -116,7 +116,7 @@ module.exports = function ( grunt ) {
         files: [
           {
             src: [ '**' ],
-            dest: '<%= compile_dir %>/assets',
+            dest: '<%= compile_dir %>/',
             cwd: '<%= build_dir %>/assets',
             expand: true
           },
@@ -149,7 +149,7 @@ module.exports = function ( grunt ) {
           '<%= html2js.common.dest %>', 
           'module.suffix' 
         ],
-        dest: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js'
+        dest: '<%= compile_dir %>/<%= pkg.name %>-<%= pkg.version %>.js'
       }
     },
     coffee: {
@@ -254,19 +254,6 @@ module.exports = function ( grunt ) {
       }
     },
 
-    //karma: {
-    //  options: {
-    //    configFile: '<%= build_dir %>/karma-unit.js'
-    //  },
-    //  unit: {
-    //    port: 9019,
-    //    background: true
-    //  },
-    //  continuous: {
-    //    singleRun: true
-    //  }
-    //},
-
     index: {
 
       build: {
@@ -341,24 +328,6 @@ module.exports = function ( grunt ) {
         files: [ 'src/**/*.less' ],
         tasks: [ 'less:build' ]
       }
-      //jsunit: {
-      //  files: [
-      //    '<%= app_files.jsunit %>'
-      //  ],
-      //  tasks: [ 'jshint:test' ],
-      //  options: {
-      //    livereload: false
-      //  }
-      //},
-      //coffeeunit: {
-      //  files: [
-      //    '<%= app_files.coffeeunit %>'
-      //  ],
-      //  tasks: [ 'coffeelint:test', 'karma:unit:run' ],
-      //  options: {
-      //    livereload: false
-      //  }
-      //}
     }
   };
 
@@ -389,7 +358,11 @@ module.exports = function ( grunt ) {
     var jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
       return file.replace( dirRE, '' );
     });
+
+    console.log(this.filesSrc );
+
     var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
+      console.log(file);
       return file.replace( dirRE, '' );
     });
 
